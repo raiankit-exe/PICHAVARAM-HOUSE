@@ -71,8 +71,8 @@ passport.deserializeUser((obj, done) => {
 
 // --- Static Files ---
 // Serve frontend files (HTML, CSS, JS)
-// app.use(express.static(__dirname)); // Serve files from the project root
-app.use(express.static(path.join(__dirname, 'public'))); // Serve static files from public/
+app.use(express.static(__dirname)); // Serve files from the project root
+// app.use(express.static(path.join(__dirname, 'public'))); // Serve static files from public/
 
 // --- Routes ---
 
