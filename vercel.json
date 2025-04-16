@@ -7,9 +7,16 @@
     }
   ],
   "routes": [
-    { "src": "/", "dest": "server.js" },
+    // Match specific dynamic server routes first
     { "src": "/auth/google", "dest": "server.js" },
     { "src": "/auth/google/callback", "dest": "server.js" },
-    { "src": "/logout", "dest": "server.js" }
+    { "src": "/logout", "dest": "server.js" },
+
+    // Match requests that DON'T look like static files (no common extensions)
+    // and send them to server.js. This handles '/' and other potential dynamic paths.
+    { "src": "/((?!.*\\.(?:css|js|html|png|jpg|jpeg|gif|ico|svg|woff|woff2|ttf|eot))[\\w\\-/.]*)", "dest": "server.js" },
+
+    // Let Vercel's default static handling serve files from 'public/'
+    // No explicit route needed here, requests like /styles.css should be handled automatically.
   ]
 } 
